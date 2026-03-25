@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Contour.Core.Test/Contour.Core.Tests.csproj" />
+  <Project Path="Contour.Core/Contour.Core.csproj" />
+</Solution>

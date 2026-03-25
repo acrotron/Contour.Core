@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<PackageId>Contour.Core</PackageId>
+		<Version>1.0.0</Version>
+		<Authors>Acrotron</Authors>
+		<Description>A .NET library for generating contour lines and polygons from scattered geospatial data using triangulation-based interpolation.</Description>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<RepositoryUrl>https://github.com/acrotron/Contour.Core</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>contour;geospatial;triangulation;interpolation;noise;gis</PackageTags>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\README.md" Pack="true" PackagePath="\" />
+		<None Include="..\LICENSE" Pack="true" PackagePath="\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="NetTopologySuite" />
+	</ItemGroup>
+
+</Project>
