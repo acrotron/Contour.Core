@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<PackageId>Contour.Core</PackageId>
-		<Version>1.0.2</Version>
+		<Version>1.0.3</Version>
 		<Authors>Acrotron</Authors>
 		<Description>A .NET library for generating contour lines and polygons from scattered geospatial data using triangulation-based interpolation.</Description>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
