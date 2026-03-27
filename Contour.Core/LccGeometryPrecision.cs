@@ -9,5 +9,5 @@ namespace Contour.Core;
 /// </summary>
 public class LccGeometryPrecision : IGeometryPrecision
 {
-    public GeometryFactory GeometryFactory { get; } = new GeometryFactory(new PrecisionModel(1000));
+    public GeometryFactory GeometryFactory { get; } = new GeometryFactory(new PrecisionModel(PrecisionModels.Floating));
 }
