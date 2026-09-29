@@ -34,6 +34,9 @@ public class LambertConformalConicTests
     [DataRow(72.84, 19.06)]
     [DataRow(-103.461871974262, 43.8322573614683)]
     [DataRow(-104.673828, 39.849312)]
+    [DataRow(151.1772, -33.9461)] // Sydney (southern hemisphere, n < 0)
+    [DataRow(28.2460, -26.1392)] // Johannesburg (southern hemisphere, n < 0)
+    [DataRow(-46.4731, -23.4356)] // São Paulo (southern hemisphere, n < 0)
     public void Lcc_RoundTrip_RecoversOriginalCoordinates(double lon, double lat)
     {
         var lcc = new LambertConformalConic(lat, lon);
@@ -47,6 +50,20 @@ public class LambertConformalConicTests
 
         recoveredLon.Should().BeApproximately(testLon, 1e-9, "Round-trip longitude");
         recoveredLat.Should().BeApproximately(testLat, 1e-9, "Round-trip latitude");
+    }
+
+    [TestMethod]
+    [DataRow(0.0)]
+    [DataRow(90.0)]
+    [DataRow(-90.0)]
+    [DataRow(double.NaN)]
+    public void Lcc_DegenerateLatitudeOfOrigin_Throws(double lat)
+    {
+        // Act
+        Action act = () => _ = new LambertConformalConic(lat, 0.0);
+
+        // Assert
+        act.Should().Throw<ArgumentOutOfRangeException>().WithParameterName("latOriginDeg");
     }
 
     [TestMethod]

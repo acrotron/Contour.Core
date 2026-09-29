@@ -25,8 +25,17 @@ public sealed class LambertConformalConic
     /// </summary>
     /// <param name="latOriginDeg">Airport latitude in degrees (latitude of origin and both standard parallels).</param>
     /// <param name="lonOriginDeg">Airport longitude in degrees (central meridian).</param>
+    /// <exception cref="ArgumentOutOfRangeException">
+    /// <paramref name="latOriginDeg"/> is 0 (the cone degenerates, n = sin(φ₀) = 0) or not strictly between -90 and 90.
+    /// </exception>
     public LambertConformalConic(double latOriginDeg, double lonOriginDeg)
     {
+        if (latOriginDeg == 0.0 || !(Math.Abs(latOriginDeg) < 90.0))
+        {
+            throw new ArgumentOutOfRangeException(nameof(latOriginDeg), latOriginDeg,
+                "The latitude of origin must be non-zero and strictly between -90 and 90 degrees for a tangential Lambert Conformal Conic projection.");
+        }
+
         _lonOriginRad = DegreesToRadians(lonOriginDeg);
         double lat0Rad = DegreesToRadians(latOriginDeg);
 
@@ -69,8 +78,11 @@ public sealed class LambertConformalConic
     /// </summary>
     public (double Longitude, double Latitude) Inverse(double easting, double northing)
     {
-        double rhoPrime = Math.Sign(_n) * Math.Sqrt(easting * easting + (_rho0 - northing) * (_rho0 - northing));
-        double thetaPrime = Math.Atan2(easting, _rho0 - northing);
+        // Snyder (1987), eq. 14-10 and 14-11: for a southern-hemisphere origin (n < 0) the signs of
+        // x, y and rho0 are reversed before taking the angle, otherwise theta' is off by pi.
+        double sign = Math.Sign(_n);
+        double rhoPrime = sign * Math.Sqrt(easting * easting + (_rho0 - northing) * (_rho0 - northing));
+        double thetaPrime = Math.Atan2(sign * easting, sign * (_rho0 - northing));
 
         double t = Math.Pow(rhoPrime / (A * _bigF), 1.0 / _n);
         double lonRad = thetaPrime / _n + _lonOriginRad;
