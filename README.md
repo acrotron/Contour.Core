@@ -13,7 +13,7 @@ A .NET library for generating contour lines and polygons from scattered geospati
 
 ### Prerequisites
 
-- .NET 8.0 or later
+- .NET 10.0 or later
 
 ### Installation
 
