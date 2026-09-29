@@ -26,6 +26,11 @@ public readonly struct Intersection
     /// </summary>
     public TriEdge TriEdge { get; }
 
+    /// <summary>
+    /// Returns the points where the contour level crosses the edges of the triangle, with the edge each point lies on.
+    /// </summary>
+    /// <param name="interval">Contour level.</param>
+    /// <param name="triangle">Triangle whose vertex M values hold the data values.</param>
     public static List<Intersection> GetIntersections(double interval, TriExt triangle)
     {
         List<Intersection> intersections = [];

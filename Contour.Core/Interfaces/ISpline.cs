@@ -2,6 +2,9 @@ using NetTopologySuite.Geometries;
 
 namespace Contour.Core.Interfaces;
 
+/// <summary>
+/// Interpolates scattered points onto a regular grid.
+/// </summary>
 public interface ISpline
 {
     /// <summary>

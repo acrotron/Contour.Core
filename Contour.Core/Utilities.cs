@@ -2,18 +2,22 @@
 
 namespace Contour.Core;
 
+/// <summary>
+/// Interpolation helpers for contouring along triangle edges.
+/// </summary>
 public static class Utilities
 {
     /// <summary>
     /// Uses linear interpolation between two points to find the point that matches the scalar value.
     /// </summary>
     /// <returns>
-    /// the interpolated point for the scalar value or an invalid CoordinateM object with invalid X, Y values (NaN and/or -Infinity) if the scalar value can't be determined.
+    /// The interpolated point for the scalar value, with M set to the scalar value. When both points have the same
+    /// M value, the midpoint of the two points is returned.
     /// </returns>
     public static CoordinateM Interpolate(CoordinateM c1, CoordinateM c2, double scalar)
     {
         double dM = c2.M - c1.M;
-        if (Math.Abs(dM) < double.Epsilon)
+        if (dM == 0.0)
         {
             // Both endpoints have the same M value; return the midpoint
             return new CoordinateM((c1.X + c2.X) / 2, (c1.Y + c2.Y) / 2, scalar);
@@ -29,7 +33,7 @@ public static class Utilities
     }
 
     /// <summary>
-    /// method to check if a contour passes through an edge of a triangle
+    /// Checks whether a contour level passes through an edge, i.e. exactly one of the two vertex values is above it.
     /// </summary>
     public static bool ContourPassesThroughEdge(double m1, double m2, double contourLevel)
     {

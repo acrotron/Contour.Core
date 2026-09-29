@@ -5,9 +5,10 @@ namespace Contour.Core;
 
 /// <summary>
 /// Geometry precision for projected (LCC/metric) coordinates.
-/// PrecisionModel(1000) gives millimeter precision in meters.
+/// Uses a floating (full double) precision model, so coordinates are not snapped to a grid.
 /// </summary>
 public class LccGeometryPrecision : IGeometryPrecision
 {
+    /// <inheritdoc />
     public GeometryFactory GeometryFactory { get; } = new GeometryFactory(new PrecisionModel(PrecisionModels.Floating));
 }

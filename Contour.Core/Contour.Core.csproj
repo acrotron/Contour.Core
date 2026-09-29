@@ -11,6 +11,7 @@
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>contour;geospatial;triangulation;interpolation;noise;gis</PackageTags>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>

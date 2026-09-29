@@ -16,6 +16,13 @@ namespace Contour.Core;
 [DebuggerDisplay("{Id}, 1: {P0M}, 2: {P1M}, 3: {P2M}")]
 public class TriExt : Tri
 {
+    /// <summary>
+    /// Creates a triangle from three vertices whose M values hold the data values.
+    /// </summary>
+    /// <param name="id">Unique triangle id.</param>
+    /// <param name="p0">First vertex.</param>
+    /// <param name="p1">Second vertex.</param>
+    /// <param name="p2">Third vertex.</param>
     public TriExt(int id, CoordinateM p0, CoordinateM p1, CoordinateM p2) : base(p0, p1, p2)
     {
         Id = id;
@@ -27,16 +34,34 @@ public class TriExt : Tri
         HighestVertexValue = Math.Max(Math.Max(p0.M, p1.M), p2.M);
     }
 
+    /// <summary>
+    /// Unique triangle id.
+    /// </summary>
     public int Id { get; }
 
-    public CoordinateM P0M { get; set; }
+    /// <summary>
+    /// First vertex, with the data value as M.
+    /// </summary>
+    public CoordinateM P0M { get; }
 
-    public CoordinateM P1M { get; set; }
+    /// <summary>
+    /// Second vertex, with the data value as M.
+    /// </summary>
+    public CoordinateM P1M { get; }
 
-    public CoordinateM P2M { get; set; }
+    /// <summary>
+    /// Third vertex, with the data value as M.
+    /// </summary>
+    public CoordinateM P2M { get; }
 
+    /// <summary>
+    /// Lowest M value of the three vertices.
+    /// </summary>
     public double LowestVertexValue { get; }
 
+    /// <summary>
+    /// Highest M value of the three vertices.
+    /// </summary>
     public double HighestVertexValue { get; }
 
     /// <summary>
@@ -55,6 +80,9 @@ public class TriExt : Tri
         };
     }
 
+    /// <summary>
+    /// Returns true when one of this triangle's edges has the same two vertices (in 2D, in either order) as <paramref name="other"/>.
+    /// </summary>
     public bool HasSharedEdge(TriEdge other)
     {
         for (int i = 0; i < 3; i++)
